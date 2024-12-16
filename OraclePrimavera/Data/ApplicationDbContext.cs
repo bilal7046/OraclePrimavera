@@ -17,7 +17,13 @@ namespace OraclePrimavera.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Specify that the 'Attachment' property should use 'CLOB' for Oracle database
+            modelBuilder.Entity<ProjectRecord>()
+           .Property(e => e.Attachment)
+           .HasColumnType("CLOB");
+
+            modelBuilder.Entity<ProjectRecordManual>()
+           .Property(e => e.Attachment)
+           .HasColumnType("CLOB");
         }
     }
 }

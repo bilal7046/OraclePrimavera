@@ -12,7 +12,7 @@ using OraclePrimavera.Data;
 namespace OraclePrimavera.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241216051429_V1")]
+    [Migration("20241216074811_V1")]
     partial class V1
     {
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace OraclePrimavera.Migrations
                         .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Attachment")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("CLOB");
 
                     b.Property<string>("Category")
                         .HasMaxLength(100)
@@ -126,7 +126,7 @@ namespace OraclePrimavera.Migrations
                         .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Attachment")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("CLOB");
 
                     b.Property<string>("Category")
                         .HasMaxLength(100)

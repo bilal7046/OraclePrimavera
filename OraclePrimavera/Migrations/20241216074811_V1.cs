@@ -35,7 +35,7 @@ namespace OraclePrimavera.Migrations
                     AnticipatedCost = table.Column<decimal>(type: "DECIMAL(18, 2)", nullable: true),
                     ActualCostAmount = table.Column<decimal>(type: "DECIMAL(18, 2)", nullable: true),
                     AttachUrl = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: true),
-                    Attachment = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true)
+                    Attachment = table.Column<string>(type: "CLOB", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,7 +66,7 @@ namespace OraclePrimavera.Migrations
                     AnticipatedCost = table.Column<decimal>(type: "DECIMAL(18, 2)", nullable: true),
                     ActualCostAmount = table.Column<decimal>(type: "DECIMAL(18, 2)", nullable: true),
                     AttachUrl = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: true),
-                    Attachment = table.Column<string>(type: "NVARCHAR2(2000)", nullable: true)
+                    Attachment = table.Column<string>(type: "CLOB", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -53,11 +53,7 @@ namespace OraclePrimavera.Controllers
 
             if (projectDto.AttachmentFile != null)
             {
-                var result = await _fileUploader.UploadFile(projectDto.AttachmentFile);
-                if (result.status)
-                {
-                    projectDto.Attachment = result.url;
-                }
+                projectDto.Attachment = Utility.ConvertFileToBase64WithMimeType(projectDto.AttachmentFile);
             }
 
             projectDto.CreationDate = DateTime.Now;
@@ -105,11 +101,7 @@ namespace OraclePrimavera.Controllers
 
             if (projectDto.AttachmentFile != null)
             {
-                var result = await _fileUploader.UploadFile(projectDto.AttachmentFile);
-                if (result.status)
-                {
-                    projectDto.Attachment = result.url;
-                }
+                projectDto.Attachment = Utility.ConvertFileToBase64WithMimeType(projectDto.AttachmentFile);
             }
 
             projectDto.LastUpdateDate = DateTime.Now;
@@ -118,6 +110,7 @@ namespace OraclePrimavera.Controllers
             if (submitType == "FormSubmit")
             {
                 var projectObj = await _projectRepository.GetById(project.ProctorNo);
+                project.CreationDate = projectObj.CreationDate;
 
                 if (string.IsNullOrEmpty(project.Attachment))
                 {

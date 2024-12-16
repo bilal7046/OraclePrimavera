@@ -41,7 +41,7 @@ namespace OraclePrimavera.Migrations
                         .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Attachment")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("CLOB");
 
                     b.Property<string>("Category")
                         .HasMaxLength(100)
@@ -123,7 +123,7 @@ namespace OraclePrimavera.Migrations
                         .HasColumnType("NVARCHAR2(100)");
 
                     b.Property<string>("Attachment")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("CLOB");
 
                     b.Property<string>("Category")
                         .HasMaxLength(100)
