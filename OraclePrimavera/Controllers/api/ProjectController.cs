@@ -50,6 +50,7 @@ namespace OraclePrimavera.Controllers.api
             // Retrieve the existing record from the database
             var projectRecordFromDB = await _projectRepository.GetById(id);
             projectRecordFromDB.CreationDate = projectRecordFromDB.CreationDate;
+
             if (projectRecordFromDB == null)
             {
                 return NotFound($"Project record with ProctorNo {projectRecordDto.ProctorNo} not found.");
