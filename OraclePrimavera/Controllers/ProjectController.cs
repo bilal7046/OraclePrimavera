@@ -60,6 +60,7 @@ namespace OraclePrimavera.Controllers
                 }
             }
 
+            projectDto.CreationDate = DateTime.Now;
             var project = _mapper.Map<ProjectRecord>(projectDto);
 
             if (submitType == "FormSubmit")
@@ -111,6 +112,7 @@ namespace OraclePrimavera.Controllers
                 }
             }
 
+            projectDto.LastUpdateDate = DateTime.Now;
             var project = _mapper.Map<ProjectRecord>(projectDto);
 
             if (submitType == "FormSubmit")

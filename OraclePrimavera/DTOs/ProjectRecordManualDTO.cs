@@ -11,8 +11,8 @@ namespace OraclePrimavera.DTOs
         [StringLength(50)]
         public string RecordNo { get; set; }
 
-        public DateTime? CreationDate { get; set; } = DateTime.Now;
-        public DateTime? LastUpdateDate { get; set; } = DateTime.Now;
+        public DateTime? CreationDate { get; set; }
+        public DateTime? LastUpdateDate { get; set; }
 
         [StringLength(100)]
         public string CreatedBy { get; set; }
