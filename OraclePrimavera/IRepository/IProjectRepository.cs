@@ -15,5 +15,7 @@ namespace OraclePrimavera.IRepository
         Task<ProjectRecord> GetById(int id);
 
         Task<bool> IsExist(int id);
+
+        Task<IEnumerable<ProjectRecord>> GetFiltered(string projectName, int procterNo, int projectId, string recordNo);
     }
 }

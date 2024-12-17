@@ -11,6 +11,10 @@
         <h4 class="text-secondary mb-3">Project Details</h4>
         <div class="row g-3">
             <div class="col-md-6">
+                <strong>ProctorNo:</strong>
+                <p id="Record_No" class="form-control-plaintext">@Model.ProctorNo</p>
+            </div>
+            <div class="col-md-6">
                 <strong>Record No:</strong>
                 <p id="Record_No" class="form-control-plaintext">@Model.RecordNo</p>
             </div>
@@ -74,14 +78,9 @@
         <div class="row g-3">
             <div class="col-md-6">
                 <strong>Attachment URL:</strong>
-                @if (!string.IsNullOrEmpty(Model.AttachUrl))
-                {
-                    <a id="Attach_url" href="/@Model.AttachUrl" target="_blank" class="form-control-plaintext">View Attachment</a>
-                }
-                else
-                {
-                    <span class="text-muted">No attachment available.</span>
-                }
+
+                <p  class="form-control-plaintext">@Model.AttachUrl</p>
+                    
             </div>
 
             @* <div class="col-md-6">
@@ -89,8 +88,20 @@
                 <p id="Creation_date" class="form-control-plaintext">@Model.CreationDate.Value.ToShortDateString()</p>
             </div> *@
             <div class="col-md-6">
+                <strong>Last Update:</strong>
+                <p id="Creation_date" class="form-control-plaintext">
+                    @(Model.LastUpdateDate?.ToShortDateString() ?? "N/A")
+                </p>
+            </div>
+            <div class="col-md-6">
                 <strong>Created By:</strong>
                 <p id="Created_by" class="form-control-plaintext">@Model.CreatedBy</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Last Update:</strong>
+                <p id="Creation_date" class="form-control-plaintext">
+                    @Model.LastUpdateDate?.ToShortDateString() ?? "N/A"
+                </p>
             </div>
             <div class="col-md-6">
                 <strong>Attachment:</strong>

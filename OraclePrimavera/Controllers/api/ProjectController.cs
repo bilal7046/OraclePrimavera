@@ -36,6 +36,20 @@ namespace OraclePrimavera.Controllers.api
             return Ok(data);
         }
 
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFiltered([FromQuery] string projectName,
+                                                        [FromQuery] int? procterNo,
+                                                        [FromQuery] int? projectId,
+                                                        [FromQuery] string recordNo
+                                                       )
+        {
+            int defaultProcterNo = procterNo ?? 0;
+            int defaultProjectId = projectId ?? 0;
+
+            var data = await _projectRepository.GetFiltered(projectName, defaultProcterNo, defaultProjectId, recordNo);
+            return Ok(data);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ProjectRecordDTO projectRecordDTO)
         {
