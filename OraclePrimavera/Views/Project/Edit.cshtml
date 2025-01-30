@@ -1,0 +1,123 @@
+﻿@model ProjectRecordDTO
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center my-4 text-primary">Add New Record</h2>
+    <div class="card shadow-sm p-4">
+        <form method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ProctorNo" />
+            <!-- Project Details Section -->
+            <h4 class="text-secondary mb-3">Project Details</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="Record_No" class="form-label">Record No <span class="text-danger">*</span></label>
+                    <input type="text" asp-for="RecordNo" class="form-control">
+                    <span asp-validation-for="RecordNo" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="Project_ID" class="form-label">Project ID <span class="text-danger">*</span></label>
+                    <input type="number" id="Project_ID" asp-for="ProjectId" class="form-control">
+                      <span asp-validation-for="ProjectId" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="Project_Name" class="form-label">Project Name <span class="text-danger">*</span></label>
+                    <input type="text" id="Project_Name" asp-for="ProjectName" class="form-control">
+                    <span asp-validation-for="ProjectName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="Contract_No" class="form-label">Contract No</label>
+                    <input type="text" id="Contract_No" asp-for="ContractNo" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Project_OH_Name" class="form-label">Project OH Name</label>
+                    <input type="text" id="Project_OH_Name" asp-for="ProjectOHName" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Project_START_DATE" class="form-label">Start Date</label>
+                    <input type="date" id="Project_START_DATE" asp-for="ProjectStartDate" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Project_End_date" class="form-label">End Date</label>
+                    <input type="date" id="Project_End_date" asp-for="ProjectEndDate" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Category" class="form-label">Category</label>
+                    <select id="Category" asp-for="Category" class="form-select">
+                        <option value="Commercial">Commercial</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Status" class="form-label">Status</label>
+                    <select id="Status" asp-for="Status" class="form-select">
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Open">Open</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Cost Information Section -->
+            <h4 class="text-secondary mt-4 mb-3">Cost Information</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="Currency" class="form-label">Currency</label>
+                    <select id="Currency" asp-for="Currency" class="form-select">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Cost_Code" class="form-label">Cost Code</label>
+                    <input type="text" id="Cost_Code" asp-for="CostCode" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Anticipated_Cost" class="form-label">Anticipated Cost</label>
+                    <input type="number" id="Anticipated_Cost" asp-for="AnticipatedCost" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="Actual_Cost_Amount" class="form-label">Actual Cost Amount</label>
+                    <input type="number" id="Actual_Cost_Amount" asp-for="ActualCostAmount" class="form-control">
+                </div>
+            </div>
+
+            <!-- Additional Information Section -->
+            <h4 class="text-secondary mt-4 mb-3">Additional Information</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="Attach_url" class="form-label">Attachment URL</label>
+                    <input type="text" id="Attach_url" asp-for="AttachUrl" class="form-control">
+                </div>
+               
+                <div class="col-md-6">
+                    <label for="Created_by" class="form-label">Created By</label>
+                    <select id="Created_by" asp-for="CreatedBy" class="form-select">
+                        <option value="Waheeb Abdullah">Waheeb Abdullah</option>
+                        <option value="Company Administrator">Company Administrator</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Attachment" class="form-label">Attachment</label>
+                    <input type="file" id="Attachment" asp-for="AttachmentFile" class="form-control" accept=".pdf,.doc,.docx,.jpg,.png,.gif">
+                </div>
+                <div class="col-md-12">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea id="Description" asp-for="Description" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+                <button type="submit" name="submitType" value="FormSubmit" class="btn btn-success btn-lg px-5">Submit</button>
+                <button type="submit" name="submitType" value="ApiSubmit" class="btn btn-info btn-lg px-5">Submit (API)</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial"></partial>
+

@@ -1,0 +1,145 @@
+﻿@using OraclePrimavera.Helper
+@model ProjectRecord
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center my-4 text-primary">Record Details</h2>
+    <div class="card shadow-sm p-4">
+        <!-- Project Details Section -->
+        <h4 class="text-secondary mb-3">Project Details</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <strong>ProctorNo:</strong>
+                <p id="Record_No" class="form-control-plaintext">@Model.ProctorNo</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Record No:</strong>
+                <p id="Record_No" class="form-control-plaintext">@Model.RecordNo</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Project ID:</strong>
+                <p id="Project_ID" class="form-control-plaintext">@Model.ProjectId</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Project Name:</strong>
+                <p id="Project_Name" class="form-control-plaintext">@Model.ProjectName</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Contract No:</strong>
+                <p id="Contract_No" class="form-control-plaintext">@Model.ContractNo</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Project OH Name:</strong>
+                <p id="Project_OH_Name" class="form-control-plaintext">@Model.ProjectOHName</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Start Date:</strong>
+                <p id="Project_START_DATE" class="form-control-plaintext">@Model.ProjectStartDate</p>
+            </div>
+            <div class="col-md-6">
+                <strong>End Date:</strong>
+                <p id="Project_End_date" class="form-control-plaintext">@Model.ProjectEndDate</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Category:</strong>
+                <p id="Category" class="form-control-plaintext">@Model.Category</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Status:</strong>
+                <p id="Status" class="form-control-plaintext">@Model.Status</p>
+            </div>
+        </div>
+
+        <!-- Cost Information Section -->
+        <h4 class="text-secondary mt-4 mb-3">Cost Information</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <strong>Currency:</strong>
+                <p id="Currency" class="form-control-plaintext">@Model.Currency</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Cost Code:</strong>
+                <p id="Cost_Code" class="form-control-plaintext">@Model.CostCode</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Anticipated Cost:</strong>
+                <p id="Anticipated_Cost" class="form-control-plaintext">@Model.AnticipatedCost</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Actual Cost Amount:</strong>
+                <p id="Actual_Cost_Amount" class="form-control-plaintext">@Model.ActualCostAmount</p>
+            </div>
+        </div>
+
+        <!-- Additional Information Section -->
+        <h4 class="text-secondary mt-4 mb-3">Additional Information</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <strong>Attachment URL:</strong>
+
+                <p  class="form-control-plaintext">@Model.AttachUrl</p>
+                    
+            </div>
+
+            @* <div class="col-md-6">
+                <strong>Creation Date:</strong>
+                <p id="Creation_date" class="form-control-plaintext">@Model.CreationDate.Value.ToShortDateString()</p>
+            </div> *@
+            <div class="col-md-6">
+                <strong>Last Update:</strong>
+                <p id="Creation_date" class="form-control-plaintext">
+                    @(Model.LastUpdateDate?.ToShortDateString() ?? "N/A")
+                </p>
+            </div>
+            <div class="col-md-6">
+                <strong>Created By:</strong>
+                <p id="Created_by" class="form-control-plaintext">@Model.CreatedBy</p>
+            </div>
+            <div class="col-md-6">
+                <strong>Last Update:</strong>
+                <p id="Creation_date" class="form-control-plaintext">
+                    @Model.LastUpdateDate?.ToShortDateString() ?? "N/A"
+                </p>
+            </div>
+            <div class="col-md-6">
+                <strong>Attachment:</strong>
+                @if (!string.IsNullOrEmpty(Model.Attachment))
+                {
+                    if (Utility.GetFileTypeFromBase64(Model.Attachment)=="PDF")
+                    {
+                        <!-- Embed PDF -->
+                        <embed src="@Model.Attachment"
+                               width="100%"
+                               height="500px"
+                               type="application/pdf" />
+                    }
+                    else if (Utility.GetFileTypeFromBase64(Model.Attachment)=="Image") 
+                    
+                    {
+                        <!-- Display Image -->
+                        <img id="Attachment" src="@Model.Attachment" alt="Attachment" style="max-width: 100%; height: auto;" />
+                    }
+                    else
+                    {
+                        <!-- Fallback for unsupported formats -->
+                        <p>Unsupported file format.</p>
+                    }
+                }
+                else
+                {
+                    <p>No attachment available.</p>
+                }
+            </div>
+
+            <div class="col-md-12">
+                <strong>Description:</strong>
+                <p id="Description" class="form-control-plaintext">@Model.Description</p>
+            </div>
+        </div>
+
+       
+    </div>
+</div>
+

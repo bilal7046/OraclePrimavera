@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjectRecord>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center my-4 text-primary">Project Records</h2>
+
+    <!-- Table for Displaying Project Records -->
+    <div class="card shadow-sm p-4">
+        <div class="text-end mb-3">
+            <a href="/project/addproject" class="btn btn-success">Add New Project</a>
+        </div>
+        <table class="table table-bordered table-striped" id="myTable">
+            <thead class="table-dark">
+                <tr>
+                 
+                    <th>Record No</th>
+                    <th>Project Name</th>
+                    <th>Contract No</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Record Row 1 -->
+              @foreach (var item in Model)
+                {
+                    <tr>
+                      
+                        <td>@item.RecordNo</td>
+                        <td>@item.ProjectName</td>
+                        <td>@item.ContractNo</td>
+                        <td>@(item.ProjectStartDate.HasValue ? item.ProjectStartDate.Value.ToShortDateString() : "N/A")</td>
+                        <td>@(item.ProjectEndDate.HasValue ? item.ProjectEndDate.Value.ToShortDateString() : "N/A")</td>
+
+                        <td>@item.Status</td>
+                        <td class="text-center">
+                            <a href="/project/detail/@item.ProctorNo" class="btn btn-info btn-sm" title="View"><i class="bi bi-eye">Detail</i></a>
+                            <a href="/project/edit/@item.ProctorNo" class="btn btn-warning btn-sm mt-1" title="Edit"><i class="bi bi-pencil">Edit</i></a>
+
+                        </td>
+                    </tr>
+                }
+           
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
