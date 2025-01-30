@@ -168,6 +168,9 @@ namespace OraclePrimavera.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var project = await _projectRepository.GetById(id);
+            var files = await _projectRepository.GetFiles(id);
+
+            ViewBag.Files = files;
             return View(project);
         }
     }

@@ -221,5 +221,10 @@ bool lastOneHour)
 
             return projects;
         }
+
+        public async Task<IEnumerable<ProjectRecordFile>> GetFiles(int id)
+        {
+            return await _context.ProjectRecordFile.Where(z => z.Id == id).ToListAsync();
+        }
     }
 }
