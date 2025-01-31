@@ -19,10 +19,11 @@ namespace OraclePrimavera.DTOs
         public string Category { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
-        public object Currency { get; set; }
-        public object CostCode { get; set; }
-        public object AnticipatedCost { get; set; }
-        public object ActualCostAmount { get; set; }
+        public string Currency { get; set; }
+        public string CostCode { get; set; }
+        public decimal? AnticipatedCost { get; set; }
+        public decimal? ActualCostAmount { get; set; }
+        public string AttachUrl { get; set; }
         public List<Attachment> Attachments { get; set; }
     }
 
@@ -30,7 +31,7 @@ namespace OraclePrimavera.DTOs
     {
         public string FileName { get; set; }
         public string MimeType { get; set; }
-        public string Extensrion { get; set; }
+        public string Extension { get; set; }
         public string Base64 { get; set; }
         public string Url { get; set; }
     }

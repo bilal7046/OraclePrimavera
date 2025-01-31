@@ -8,7 +8,8 @@ namespace OraclePrimavera.Automapper
     {
         public MappingProfile()
         {
-            CreateMap<ProjectRecord, ProjectRecordDTO>().ReverseMap();
+            //CreateMap<ProjectRecord, ProjectRecordDTO>().ReverseMap();
+            CreateMap<ProjectRecord, ProjectResponseDto>().ReverseMap();
         }
     }
 }

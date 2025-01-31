@@ -23,7 +23,9 @@ namespace OraclePrimavera.IRepository
 
         Task<bool> IsExist(int id);
 
-        Task<IEnumerable<ProjectRecord>> GetFiltered(string projectName, int procterNo, int projectId, string recordNo, DateTime? creationDate, DateTime? latUpdatedDateTime, bool lastOneHour);
+        Task<IEnumerable<ProjectRecordFile>> GetFilesByProjectId(int projectId);
+
+        Task<IEnumerable<ProjectResponseDto>> GetFiltered(string projectName, int procterNo, int projectId, string recordNo, DateTime? creationDate, DateTime? latUpdatedDateTime, bool lastOneHour);
 
         Task<IEnumerable<ProjectRecordFile>> GetFiles(int id);
     }

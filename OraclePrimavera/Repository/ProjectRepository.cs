@@ -64,7 +64,7 @@ namespace OraclePrimavera.Repository
          .FirstOrDefaultAsync(p => p.ProctorNo == id);
         }
 
-        public async Task<IEnumerable<ProjectRecord>> GetFiltered(
+        public async Task<IEnumerable<ProjectResponseDto>> GetFiltered(
 string projectName,
 int procterNo,
 int projectId,
@@ -104,7 +104,52 @@ bool lastOneHour)
                 var oneHourAgo = DateTime.Now.AddHours(-1);
                 query = query.Where(z => z.CreationDate.HasValue && z.CreationDate.Value >= oneHourAgo);
             }
-            return await query.ToListAsync();
+            var results = await query.ToListAsync();
+
+            var data = results.Select(z => new ProjectResponseDto()
+            {
+                ProctorNo = z.ProctorNo,
+                ProjectName = z.ProjectName,
+                CreatedBy = z.CreatedBy,
+                ProjectId = z.ProjectId,
+                RecordNo = z.RecordNo,
+                ProjectOHName = z.ProjectOHName,
+                Category = z.Category,
+                Description = z.Description,
+                Currency = z.Currency,
+                CostCode = z.CostCode,
+                AnticipatedCost = z.AnticipatedCost,
+                ActualCostAmount = z.ActualCostAmount,
+                ContractNo = z.ContractNo,
+                ProjectStartDate = z.ProjectStartDate,
+                ProjectEndDate = z.ProjectEndDate,
+                Status = z.Status,
+                CreationDate = z.CreationDate.Value,
+                LastUpdateDate = z.LastUpdateDate.HasValue ? z.LastUpdateDate.Value : (DateTime?)null
+            }).ToList();
+            foreach (var project in data)
+            {
+                List<Attachment> attachments = new List<Attachment>();
+                var files = await GetFilesByProjectId(project.ProjectId.Value);
+                if (files.Count() > 0)
+                {
+                    foreach (var file in files)
+                    {
+                        attachments.Add(new Attachment()
+                        {
+                            FileName = file.FileName,
+                            MimeType = file.MimeType,
+                            Extension = file.Extension,
+                            Base64 = file.Base64File,
+                            Url = file.FileUrl
+                        });
+                    }
+                }
+
+                project.Attachments = attachments;
+            }
+
+            return data;
         }
 
         public async Task<IEnumerable<ProjectResponseDto>> GetProjectsWithFiles()
@@ -143,7 +188,7 @@ bool lastOneHour)
                         {
                             FileName = file.FileName,
                             MimeType = file.MimeType,
-                            Extensrion = file.Extension,
+                            Extension = file.Extension,
                             Base64 = file.Base64File,
                             Url = file.FileUrl
                         });
@@ -156,7 +201,7 @@ bool lastOneHour)
             return projects;
         }
 
-        private async Task<IEnumerable<ProjectRecordFile>> GetFilesByProjectId(int projectId)
+        public async Task<IEnumerable<ProjectRecordFile>> GetFilesByProjectId(int projectId)
         {
             return await _context.ProjectRecordFile.Where(z => z.ProjectRecordId == projectId).ToListAsync();
         }
@@ -175,7 +220,7 @@ bool lastOneHour)
 
         public async Task<IEnumerable<ProjectResponseDto>> GetProjectWithFiles(int id)
         {
-            var projects = await _context.ProjectRecords.Where(z => z.ProjectId == id).AsNoTracking().Select(z => new ProjectResponseDto()
+            var projects = await _context.ProjectRecords.Where(z => z.ProctorNo == id).AsNoTracking().Select(z => new ProjectResponseDto()
             {
                 ProctorNo = z.ProctorNo,
                 ProjectName = z.ProjectName,
@@ -209,7 +254,7 @@ bool lastOneHour)
                         {
                             FileName = file.FileName,
                             MimeType = file.MimeType,
-                            Extensrion = file.Extension,
+                            Extension = file.Extension,
                             Base64 = file.Base64File,
                             Url = file.FileUrl
                         });
